@@ -17,6 +17,7 @@ export default class RexImageUI extends Plugin {
         const editor = this.editor;
         const doc = editor.document;
         const t = editor.t;
+        const media_type = editor.config.get( 'rexImage.media_type' );
 
         // Setup `imageUpload` button.
         editor.ui.componentFactory.add( 'rexImage', locale => {
@@ -30,7 +31,14 @@ export default class RexImageUI extends Plugin {
 
             button.on( 'execute', () => {
                 const insertAt = findOptimalInsertionPosition( editor.model.document.selection );
-                var mediaPool = openREXMedia('cke5_medialink', '&args[types]=jpg%2Cjpeg%2Cpng%2Cgif%2Cbmp%2Ctiff%2Csvg');
+                var mediaPool = openREXMedia('cke5_medialink', '&args[types]=jpg%2Cjpeg%2Cpng%2Cgif%2Cbmp%2Ctiff%2Csvg'),
+                    mediaPath = 'index.php?rex_media_type=' + media_type + '&rex_media_file=';
+
+                if (typeof media_type === 'undefined') {
+                    mediaPath = '../media/';
+                }
+
+                const mediaSrcPath = (!typeof media_type === 'undefined') ? mediaManagerPath : mediaPath;
 
                 $(mediaPool).on('rex:selectMedia', function (event, filename) {
                     event.preventDefault();
@@ -39,7 +47,7 @@ export default class RexImageUI extends Plugin {
                     editor.model.change(writer => {
 
                         const imageElement = new ModelElement( 'image', {
-                            src: "/media/" + filename
+                            src: mediaSrcPath + filename
                         } );
 
                         let insertAtSelection;
