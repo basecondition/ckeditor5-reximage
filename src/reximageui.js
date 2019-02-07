@@ -28,11 +28,11 @@ export default class RexImageUI extends Plugin {
 
             button.on('execute', () => {
                 let mediaPool = openREXMedia('cke5_medialink', '&args[types]=jpg%2Cjpeg%2Cpng%2Cgif%2Cbmp%2Ctiff%2Csvg'),
-                    mediaPath = 'index.php?rex_media_type=' + media_type + '&rex_media_file=';
+                    mediaPath = '/index.php?rex_media_type=' + media_type + '&rex_media_file=';
 
                 if (typeof media_type === 'undefined') {
                     if (typeof media_path === 'undefined') {
-                        mediaPath = '../media/';
+                        mediaPath = '/media/';
                     } else {
                         mediaPath = media_path;
                     }
