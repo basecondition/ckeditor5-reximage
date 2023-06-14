@@ -1,29 +1,26 @@
 {
   "name": "ckeditor5-reximage",
-  "version": "1.2.1",
-  "description": "Internlink integration for redaxo5.",
+  "version": "3.0.2",
+  "description": "CKEditor5 Image integration for redaxo5.",
   "keywords": [
     "ckeditor",
     "ckeditor5",
     "ckeditor 5",
-    "ckeditor5-feature"
+    "ckeditor5-feature",
+    "redaxo5",
+    "redaxo 5"
   ],
-  "dependencies": {
-    "@ckeditor/ckeditor5-core": "^11.1.0",
-    "@ckeditor/ckeditor5-engine": "^12.0.0",
-    "@ckeditor/ckeditor5-theme-lark": "^12.0.0",
-    "@ckeditor/ckeditor5-ui": "^11.2.0"
-  },
+  "main": "src/index.ts",
   "devDependencies": {
-    "@ckeditor/ckeditor5-editor-classic": "^11.0.0"
+    "@ckeditor/ckeditor5-editor-classic": "^38.0.1"
   },
   "engines": {
-    "node": ">=6.0.0",
-    "npm": ">=3.0.0"
+    "node": ">=16.0.0",
+    "npm": ">=5.7.1"
   },
   "author": "hello@baseconditio.com",
   "license": "GPL-2.0-or-later",
-  "homepage": "https://ckeditor.com",
+  "homepage": "https://github.com/basecondition/ckeditor5-reximage",
   "bugs": {
     "url": "https://github.com/basecondition/ckeditor5-reximage/issues"
   },
@@ -35,6 +32,16 @@
     "src"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p ./tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"**/*.{js,ts}\" --quiet"
+  },
+  "lint-staged": {
+    "**/*.{js,ts}": [
+      "eslint --quiet"
+    ],
+    "**/*.css": [
+      "stylelint --quiet --allow-empty-input"
+    ]
   }
 }
